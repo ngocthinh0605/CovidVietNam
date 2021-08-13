@@ -1,6 +1,6 @@
 import React from 'react'
 import { Bar } from "react-chartjs-2";
-const ChartBar =  ({a,chart}) => {
+const ChartBar =  ({a,chart,covicToday}) => {
     const vietNam = {...a};
     const speadChart = {...chart};
     return (
@@ -23,7 +23,7 @@ const ChartBar =  ({a,chart}) => {
                                 "#8e5ea2",
                                 "#3cba9f",
                             ],
-                            data: [vietNam[2], vietNam[4], vietNam[3]]
+                            data: [vietNam[2], covicToday[1], vietNam[3]]
                         }
                     ]
                     }}

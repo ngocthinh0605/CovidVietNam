@@ -1,7 +1,7 @@
 import React from 'react'
 import { Doughnut } from "react-chartjs-2";
 
-const Chart = ({a,chart}) => {
+const Chart = ({a,chart,covicToday}) => {
     const vietNam = {...a};
 
     const speadChart = {...chart};
@@ -24,7 +24,7 @@ const Chart = ({a,chart}) => {
                                 "#8e5ea2",
                                 "#3cba9f",
                             ],
-                            data: [vietNam[2], vietNam[4], vietNam[3]]
+                            data: [vietNam[2], covicToday[1], vietNam[3]]
                             }
                         ]
                         }}
