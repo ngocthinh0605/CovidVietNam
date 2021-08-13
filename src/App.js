@@ -120,10 +120,10 @@ function App() {
         <div class="container">
           <div class="row">
             <div class="col-lg-12 row ">
-                <div className="col-lg-6  content-center">
+                <div className="col-lg-4  content-center">
                   <Chart a={a} chart={chart}></Chart>
                 </div>
-                <div className="col-lg-6 col-sm-12">
+                <div className="col-lg-8 col-sm-12">
                   <ChartBar a={a} chart={chart}></ChartBar>
                 </div>
             </div>
