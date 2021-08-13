@@ -17,14 +17,18 @@ h1{
 }
 
 .App{
-transition: all 6s ease;
+  background-color:rgb(235, 214, 214) ;
+  transition: all 6s ease;
+
 }
 .search{
   text-align: center;
 }
 
 .search input{
-  font-size: 25px;
+  font-size: 20px;
   border-radius: 10px;
   outline: none;
+  background-color:transparent;
+  
 }

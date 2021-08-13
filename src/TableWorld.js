@@ -1,7 +1,6 @@
 import React from 'react'
 
-const TableWorld = ({a}) => {
-
+const TableWorld = ({a,covicToday}) => {
     return (
         <div className="table-world">
         <h1>{a[1]}</h1>
@@ -16,7 +15,7 @@ const TableWorld = ({a}) => {
               <tbody>
                 <tr>
                   <td className="table-detail">{new Intl.NumberFormat('de-DE').format(a[2])}</td>
-                  <td className="table-detail"><span>+{new Intl.NumberFormat('de-DE').format(a[4])}</span></td>
+                  <td className="table-detail"><span>+{new Intl.NumberFormat('de-DE').format(covicToday[1])}</span></td>
                   <td className="table-detail">{new Intl.NumberFormat('de-DE').format(a[3])}</td>
                 </tr>
               </tbody>

@@ -8,7 +8,7 @@ import TableWorld from './TableWorld';
 import TableProvice from './TableProvice';
 const licensePlates = {
     "Hà Nội" : [29, 30, 31, 32, 33, 40].join(','),
-    "TP HCM" : [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 41].join(','),
+    "TP HCM" : [50, ' Đến ', 59, 41].join(','),
     "Cao Bằng" : [11],
     "Lạng Sơn" : [12],
     "Quảng Ninh" : [14],
@@ -77,11 +77,17 @@ function App() {
   const [apiVietName, setApiVietName] = useState([]);
   const [chart, setChart] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [covidToDay, setCovidToDay] = useState([]);
+
+
+  
 
   async function getApi(){
     try {
       const response = await axios.get('https://tuoitre.io/covid-mix');
+      const responseCovidToday = await axios.get('https://tuoitre.io/covid/bieu-do');
       setApiVietName(response.data);
+      setCovidToDay(responseCovidToday.data);
     } catch (error) {
       console.error(error);
     }
@@ -93,6 +99,7 @@ function App() {
 
 
   const a = {...apiVietName[0]};
+  const covicToday = {...covidToDay[covidToDay.length-1]}
 
 
   function handleChart(index1){
@@ -113,7 +120,7 @@ function App() {
     <div className="App">
       <div class="container">
         <div className="content-title mt-8">
-          { chart.length === 0 ? <TableWorld a={a} ></TableWorld> : <TableProvice a={chart}></TableProvice>}
+          { chart.length === 0 ? <TableWorld covicToday={covicToday} a={a} ></TableWorld> : <TableProvice a={chart}></TableProvice>}
           
         </div>
       </div>  
@@ -123,13 +130,13 @@ function App() {
                 <div className="col-lg-4  content-center">
                   <Chart a={a} chart={chart}></Chart>
                 </div>
-                <div className="col-lg-8 col-sm-12">
+                <div className="col-lg-8 col-md-10">
                   <ChartBar a={a} chart={chart}></ChartBar>
                 </div>
             </div>
             <div class="col-lg-12 content-right">
               <div className="search mt-4">
-              <h3>Tìm Kiếm Thông Tin Thành Phố/Tỉnh Của Bạn!!</h3>
+                <h3>Tìm Kiếm Thông Tin Thành Phố/Tỉnh Của Bạn!!</h3>
                 <input onChange={(e)=> handleSearch(e.target.value)} value={searchText} type="text" placeholder="Nhập Tên......" />
               </div>
               <div className="row mt-4">
@@ -141,10 +148,10 @@ function App() {
                   .map((element,index) => element[0] > 0 &&
                     <button key={element[0]} onClick={()=>handleChart(element[0])} type="button" class="col-lg-2 btn btn-success mr-2 mt-2 ml-2">{element[1]}
                       <h6>
-                        Số Xe:  
-                          {
-                          ' '+ licensePlates[element[1]]
-                          }
+                        <h6>Số Xe:</h6> 
+                          
+                          <span>{licensePlates[element[1]]}</span>
+                          
                       </h6>
                     </button>)
               }      
