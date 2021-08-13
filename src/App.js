@@ -31,7 +31,7 @@ const licensePlates = {
     "Nghệ An" : [37],
     "Hà Tĩnh" : [38],
     "Đà Nẵng" : [43],
-    "Đắk Lak" : [47],
+    "Đắk Lắk" : [47],
     "Đắk Nông" : [48],
     "Lâm Đồng" : [49],
     "Đồng Nai" : [39, 60].join(','),
