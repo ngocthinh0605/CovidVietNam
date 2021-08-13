@@ -5,7 +5,6 @@ const Chart = ({a,chart}) => {
     const vietNam = {...a};
 
     const speadChart = {...chart};
-    console.log('spaer',speadChart)
     return (
         <>
             { 

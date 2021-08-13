@@ -3,7 +3,7 @@ import React from 'react'
 const TableWorld = ({a}) => {
 
     return (
-        <div>
+        <div className="table-world">
         <h1>{a[1]}</h1>
           <table class="table">
               <thead>
@@ -15,9 +15,9 @@ const TableWorld = ({a}) => {
               </thead>
               <tbody>
                 <tr>
-                  <td>{new Intl.NumberFormat('de-DE').format(a[2])}</td>
-                  <td>+{new Intl.NumberFormat('de-DE').format(a[4])}</td>
-                  <td>{new Intl.NumberFormat('de-DE').format(a[3])}</td>
+                  <td className="table-detail">{new Intl.NumberFormat('de-DE').format(a[2])}</td>
+                  <td className="table-detail"><span>+{new Intl.NumberFormat('de-DE').format(a[4])}</span></td>
+                  <td className="table-detail">{new Intl.NumberFormat('de-DE').format(a[3])}</td>
                 </tr>
               </tbody>
           </table>

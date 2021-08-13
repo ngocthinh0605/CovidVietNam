@@ -76,6 +76,7 @@ const axios = require('axios');
 function App() {
   const [apiVietName, setApiVietName] = useState([]);
   const [chart, setChart] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
   async function getApi(){
     try {
@@ -94,10 +95,19 @@ function App() {
   const a = {...apiVietName[0]};
 
 
-  function handleChart(index){
-    setChart(apiVietName[index])
+  function handleChart(index1){
+
+    apiVietName.forEach((e,index) => e[0] === index1 &&  setChart(apiVietName[index]));
+    // setChart(apiVietName[index])
+
     window.scrollTo(0, 0);
   }
+
+  function handleSearch(text){
+
+    setSearchText(text.charAt(0).toUpperCase() + text.slice(1));
+  }
+
 
   return (
     <div className="App">
@@ -107,29 +117,35 @@ function App() {
           
         </div>
       </div>  
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
-            <div class="col-lg-8 content-left d-flex justify-content-center">
-              <div class="row">
-                <div className="col-lg-6 col-sm-12 content-center">
+            <div class="col-lg-12 row ">
+                <div className="col-lg-6  content-center">
                   <Chart a={a} chart={chart}></Chart>
                 </div>
                 <div className="col-lg-6 col-sm-12">
                   <ChartBar a={a} chart={chart}></ChartBar>
                 </div>
-              </div>
             </div>
-            <div class="col-lg-4 content-right">
-              <div className="row">
+            <div class="col-lg-12 content-right">
+              <div className="search mt-4">
+              <h3>Tìm Kiếm Thông Tin Thành Phố/Tỉnh Của Bạn!!</h3>
+                <input onChange={(e)=> handleSearch(e.target.value)} value={searchText} type="text" placeholder="Nhập Tên......" />
+              </div>
+              <div className="row mt-4">
               {
-                  apiVietName.map((element,index) => index > 1 &&
-                    <button key={index} onClick={()=>handleChart(index)} type="button" class="col-lg-3 btn btn-success ml-1 mr-1 mt-1">{element[1]}
-                      <div>
-                      Số Xe:  
-                        {
-                         ' '+ licensePlates[element[1]]
-                        }
-                      </div>
+                  apiVietName.filter(ele => {
+                    if(searchText === '') return ele;
+                    if(ele[1].indexOf(searchText) !== -1) return ele;
+                  })
+                  .map((element,index) => element[0] > 0 &&
+                    <button key={element[0]} onClick={()=>handleChart(element[0])} type="button" class="col-lg-2 btn btn-success mr-2 mt-2 ml-2">{element[1]}
+                      <h6>
+                        Số Xe:  
+                          {
+                          ' '+ licensePlates[element[1]]
+                          }
+                      </h6>
                     </button>)
               }      
               </div>

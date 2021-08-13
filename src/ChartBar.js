@@ -3,7 +3,6 @@ import { Bar } from "react-chartjs-2";
 const ChartBar =  ({a,chart}) => {
     const vietNam = {...a};
     const speadChart = {...chart};
-    console.log('spaer',speadChart)
     return (
         <>
 
