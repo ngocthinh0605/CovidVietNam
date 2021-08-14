@@ -164,7 +164,7 @@ function App() {
                       }
                     )
                   .map((element,index) => element[0] > 0 &&
-                    <button key={element[0]} onClick={()=>handleChart(element[0])} type="button" class="col-lg-2 btn btn-success mb-2 mr-2 mt-2 ml-4">{element[1]}
+                    <button key={element[0]} onClick={()=>handleChart(element[0])} type="button" class="col-lg-2 btn btn-success mb-2 mr-2 mt-2 ml-2">{element[1]}
                       <h6>
                         <h6>Số Xe:</h6> 
                           <span>{licensePlates[element[1]].length > 1 ? (licensePlates[element[1]]).join(',') : licensePlates[element[1]]}</span>
