@@ -98,7 +98,11 @@ function App() {
 
 
   const a = {...apiVietName[0]};
-  const covicToday = {...covidToDay[covidToDay.length-1]}
+
+  const covidDay ={
+    today:{...covidToDay[covidToDay.length-1]},
+    yesterday:{...covidToDay[covidToDay.length-2]},
+  }
 
 
   function handleChart(index1){
@@ -118,7 +122,7 @@ function App() {
     <div className="App">
       <div class="container">
         <div className="content-title mt-8">
-          { chart.length === 0 ? <TableWorld covicToday={covicToday} a={a} ></TableWorld> : <TableProvice a={chart}></TableProvice>}
+          { chart.length === 0 ? <TableWorld covidDay={covidDay} a={a} ></TableWorld> : <TableProvice a={chart}></TableProvice>}
           
         </div>
       </div>  
@@ -126,10 +130,10 @@ function App() {
           <div class="row">
             <div class="col-lg-12 row ">
                 <div className="col-lg-4  content-center">
-                  <Chart covicToday={covicToday} a={a} chart={chart}></Chart>
+                  <Chart covidDay={covidDay} a={a} chart={chart}></Chart>
                 </div>
                 <div className="col-lg-8 col-md-10">
-                  <ChartBar covicToday={covicToday} a={a} chart={chart}></ChartBar>
+                  <ChartBar covidDay={covidDay} a={a} chart={chart}></ChartBar>
                 </div>
             </div>
             <div class="col-lg-12 content-right">

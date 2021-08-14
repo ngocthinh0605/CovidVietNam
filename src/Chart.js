@@ -1,7 +1,7 @@
 import React from 'react'
 import { Doughnut } from "react-chartjs-2";
 
-const Chart = ({a,chart,covicToday}) => {
+const Chart = ({a,chart,covidDay}) => {
     const vietNam = {...a};
 
     const speadChart = {...chart};
@@ -14,6 +14,7 @@ const Chart = ({a,chart,covicToday}) => {
                         labels: [
                             "Tổng Số Ca Trên Cả Nước",
                             "Số Ca Nhiễm Hôm Nay",
+                            "Số Ca Nhiễm Hôm Qua",
                             "Số Ca Chữa Khỏi",
                         ],
                         datasets: [
@@ -21,10 +22,11 @@ const Chart = ({a,chart,covicToday}) => {
                             label: "Ca Nhiễm Mới",
                             backgroundColor: [
                                 "#3e95cd",
+                                "red",
                                 "#8e5ea2",
                                 "#3cba9f",
                             ],
-                            data: [vietNam[2], covicToday[1], vietNam[3]]
+                            data: [vietNam[2], covidDay.today[1],covidDay.yesterday[1], vietNam[3]]
                             }
                         ]
                         }}
