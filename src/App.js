@@ -7,8 +7,8 @@ import ChartBar from './ChartBar';
 import TableWorld from './TableWorld';
 import TableProvice from './TableProvice';
 const licensePlates = {
-    "Hà Nội" : [29, 30, 31, 32, 33, 40].join(','),
-    "TP HCM" : [50, ' Đến ', 59, 41].join(','),
+    "Hà Nội" : [29, 30, 31, 32, 33, 40],
+    "TP HCM" : [50, 51 ,52 ,53 ,54 ,55 ,56 ,57,58,59, 41],
     "Cao Bằng" : [11],
     "Lạng Sơn" : [12],
     "Quảng Ninh" : [14],
@@ -34,7 +34,7 @@ const licensePlates = {
     "Đắk Lắk" : [47],
     "Đắk Nông" : [48],
     "Lâm Đồng" : [49],
-    "Đồng Nai" : [39, 60].join(','),
+    "Đồng Nai" : [39, 60],
     "Bình Dương" : [61],
     "Long An" : [62],
     "Tiền Giang" : [63],
@@ -71,6 +71,8 @@ const licensePlates = {
     "Bắc Giang" : [98],
     "Bắc Ninh" : [99],
   }
+var ab = 123;
+  console.log(ab.length)
 
 const axios = require('axios');
 function App() {
@@ -115,7 +117,6 @@ function App() {
     setSearchText(text.charAt(0).toUpperCase() + text.slice(1));
   }
 
-
   return (
     <div className="App">
       <div class="container">
@@ -141,17 +142,31 @@ function App() {
               </div>
               <div className="row mt-4">
               {
-                  apiVietName.filter(ele => {
-                    if(searchText === '') return ele;
-                    if(ele[1].indexOf(searchText) !== -1) return ele;
-                  })
+                
+                // eslint-disable-next-line 
+                  apiVietName.filter((ele,index) => {
+                    if(index > 1){
+                        if(searchText === '') return ele;
+                          if(isNaN(searchText)){
+                            if(ele[1].indexOf(searchText) !== -1) return ele;
+                          }else{
+                            if(searchText.length === 2){
+                              var numberLincese = parseInt(searchText);
+                              if(licensePlates[ele[1]].includes(numberLincese)){
+                                return ele;
+                              }
+
+                            }
+                          }
+                          
+                        }
+                      }
+                    )
                   .map((element,index) => element[0] > 0 &&
                     <button key={element[0]} onClick={()=>handleChart(element[0])} type="button" class="col-lg-2 btn btn-success mr-2 mt-2 ml-2">{element[1]}
                       <h6>
                         <h6>Số Xe:</h6> 
-                          
-                          <span>{licensePlates[element[1]]}</span>
-                          
+                          <span>{licensePlates[element[1]].length > 1 ? (licensePlates[element[1]]).join(',') : licensePlates[element[1]]}</span>
                       </h6>
                     </button>)
               }      
