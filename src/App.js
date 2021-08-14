@@ -81,9 +81,6 @@ function App() {
   const [searchText, setSearchText] = useState('');
   const [covidToDay, setCovidToDay] = useState([]);
 
-
-  
-
   async function getApi(){
     try {
       const response = await axios.get('https://tuoitre.io/covid-mix');
@@ -139,6 +136,7 @@ function App() {
               <div className="search mt-4">
                 <h3>Tìm Kiếm Thông Tin Thành Phố/Tỉnh Của Bạn!!</h3>
                 <input onChange={(e)=> handleSearch(e.target.value)} value={searchText} type="text" placeholder="Nhập Tên......" />
+                <div>VD: 63 / Tiền Giang</div>
               </div>
               <div className="row mt-4">
               {
@@ -155,7 +153,6 @@ function App() {
                               if(licensePlates[ele[1]].includes(numberLincese)){
                                 return ele;
                               }
-
                             }
                           }
                           
@@ -163,7 +160,7 @@ function App() {
                       }
                     )
                   .map((element,index) => element[0] > 0 &&
-                    <button key={element[0]} onClick={()=>handleChart(element[0])} type="button" class="col-lg-2 btn btn-success mr-2 mt-2 ml-2">{element[1]}
+                    <button key={element[0]} onClick={()=>handleChart(element[0])} type="button" class="col-lg-2 btn btn-success mb-2 mr-2 mt-2 ml-4">{element[1]}
                       <h6>
                         <h6>Số Xe:</h6> 
                           <span>{licensePlates[element[1]].length > 1 ? (licensePlates[element[1]]).join(',') : licensePlates[element[1]]}</span>
