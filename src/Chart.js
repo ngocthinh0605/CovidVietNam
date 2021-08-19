@@ -1,10 +1,12 @@
-import React from 'react'
+import {useMemo} from 'react'
 import { Doughnut } from "react-chartjs-2";
 
 const Chart = ({a,chart,covidDay}) => {
     const vietNam = {...a};
 
     const speadChart = {...chart};
+    console.log(speadChart);
+
     return (
         <>
             { 

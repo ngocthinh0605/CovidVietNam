@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import './App.css';
 import Chart from './Chart';
 import {  } from "react-chartjs-2";
@@ -96,8 +96,7 @@ function App() {
     getApi();
   },[])
 
-
-  const a = {...apiVietName[0]};
+  const a = {...apiVietName[0]}
 
   const covidDay ={
     today:{...covidToDay[covidToDay.length-1]},
@@ -105,9 +104,10 @@ function App() {
   }
 
 
+
   function handleChart(index1){
 
-    apiVietName.forEach((e,index) => e[0] === index1 &&  setChart(apiVietName[index]));
+    apiVietName.forEach((e,index) => e[0] === index1 && setChart(apiVietName[index]));
     // setChart(apiVietName[index])
 
     window.scrollTo(0, 0);
@@ -139,7 +139,7 @@ function App() {
             <div class="col-lg-12 content-right">
               <div className="search mt-4">
                 <h3>Tìm Kiếm Thông Tin Thành Phố/Tỉnh Của Bạn!!</h3>
-                <input onChange={(e)=> handleSearch(e.target.value)} value={searchText} type="text" placeholder="Nhập Tên......" />
+                <input onChange={(e)=> handleSearch(e.target.value)} defaultValue={searchText} type="text" placeholder="Nhập Tên......" />
                 <div>VD: 63 / Tiền Giang</div>
               </div>
               <div className="row mt-4">
